@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- Enable AspectJ style of Spring AOP -->
+    <aop:aspectj-autoproxy/>
+
+    <bean name="employee" class="com.bakigoal.aop.model.Employee">
+        <property name="name" value="Dummy Name"/>
+    </bean>
+
+    <bean name="employeeService" class="com.bakigoal.aop.services.EmployeeService">
+        <property name="employee" ref="employee"/>
+    </bean>
+
+     <!--Configure Aspect Beans-->
+    <bean name="employeeAspect" class="com.bakigoal.aop.aspect.EmployeeAspect"/>
+    <bean name="employeeAspectPointcut" class="com.bakigoal.aop.aspect.EmployeeAspectPointcut"/>
+    <bean name="employeeAspectJoinPoint" class="com.bakigoal.aop.aspect.EmployeeAspectJoinPoint"/>
+    <bean name="employeeAfterAspect" class="com.bakigoal.aop.aspect.EmployeeAfterAspect"/>
+    <bean name="employeeAroundAspect" class="com.bakigoal.aop.aspect.EmployeeAroundAspect"/>
+    <bean name="employeeAnnotationAspect" class="com.bakigoal.aop.aspect.EmployeeAnnotationAspect"/>
+</beans>
