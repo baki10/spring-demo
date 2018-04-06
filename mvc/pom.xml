@@ -16,6 +16,7 @@
         <module>fileUpload</module>
         <module>i18n</module>
         <module>formValidator</module>
+        <module>exceptions</module>
     </modules>
 
     <properties>
