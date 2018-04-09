@@ -18,9 +18,6 @@
     <properties>
         <spring-framework.version>4.3.14.RELEASE</spring-framework.version>
         <postgresql.version>9.1-901-1.jdbc4</postgresql.version>
-        <!-- Logging -->
-        <logback.version>1.2.3</logback.version>
-        <slf4j.version>1.7.25</slf4j.version>
     </properties>
 
     <dependencies>
@@ -46,20 +43,6 @@
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
-        </dependency>
-
-        <!-- Logging with SLF4J & LogBack -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>
