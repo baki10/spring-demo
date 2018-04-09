@@ -9,11 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jdbc</artifactId>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>jdbc-core</module>
-    </modules>
 
     <properties>
         <spring-framework.version>4.3.14.RELEASE</spring-framework.version>
