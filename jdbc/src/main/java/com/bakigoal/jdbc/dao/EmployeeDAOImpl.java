@@ -12,12 +12,6 @@ import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-    private static final String INSERT_QUERY = "INSERT INTO Employee (id, name, role) VALUES (?,?,?)";
-    private static final String SELECT_BY_ID_QUERY = "SELECT name, role FROM Employee WHERE id = ?";
-    private static final String UPDATE_QUERY = "UPDATE Employee SET name=?, role=? WHERE id=?";
-    private static final String DELETE_QUERY = "DELETE FROM Employee WHERE id=?";
-    private static final String SELECT_ALL_QUERY = "SELECT id, name, role FROM Employee";
-
     private DataSource dataSource;
 
     public void setDataSource(DataSource dataSource) {

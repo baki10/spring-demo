@@ -11,7 +11,10 @@ public class SpringMain {
 
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-jdbc-core.xml");
-        EmployeeDAO employeeDAO = context.getBean(EmployeeDAO.class);
+        EmployeeDAO employeeDAO = context.getBean("employeeDAO", EmployeeDAO.class);
+        EmployeeDAO employeeDAOJDBCTemplate = context.getBean("employeeDAOJDBCTemplate", EmployeeDAO.class);
+        System.out.println(employeeDAO.getClass());
+        System.out.println(employeeDAOJDBCTemplate.getClass());
 
         //Run some tests for JDBC CRUD operations
         Employee emp = new Employee();
@@ -24,12 +27,12 @@ public class SpringMain {
         employeeDAO.save(emp);
 
         //Read
-        Employee emp1 = employeeDAO.getById(id);
+        Employee emp1 = employeeDAOJDBCTemplate.getById(id);
         System.out.println("Employee Retrieved::" + emp1);
 
         //Update
         emp.setRole("Tester");
-        employeeDAO.update(emp);
+        employeeDAOJDBCTemplate.update(emp);
 
         //Get All
         List<Employee> empList = employeeDAO.getAll();
