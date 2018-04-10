@@ -19,6 +19,7 @@
         <module>core</module>
         <module>mvc</module>
         <module>jdbc</module>
+        <module>hibernate</module>
     </modules>
 
     <build>
