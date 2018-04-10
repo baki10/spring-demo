@@ -1,6 +1,7 @@
 package com.bakigoal.jdbc.dao;
 
 import com.bakigoal.jdbc.model.Employee;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -18,8 +19,20 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         this.dataSource = dataSource;
     }
 
+    /**
+     * instead of the traditional JDBC approach of calling the getConnection() method on the DataSource,
+     * we use Spring’s DataSourceUtils class.
+     *
+     * If an existing transaction already has a connection to it, that instance is returned.
+     * Otherwise, the method call triggers the creation of a new connection,
+     * which is made available for subsequent reuse in that same transaction
+     */
+    private Connection getConnection() {
+        return DataSourceUtils.getConnection(dataSource);
+    }
+
     public void save(Employee employee) {
-        try (Connection con = dataSource.getConnection();
+        try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(INSERT_QUERY)) {
 
             ps.setInt(1, employee.getId());
@@ -36,7 +49,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     public Employee getById(int id) {
         Employee emp = null;
-        try (Connection con = dataSource.getConnection();
+        try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(SELECT_BY_ID_QUERY)) {
 
             ps.setInt(1, id);
@@ -57,7 +70,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     public void update(Employee employee) {
-        try (Connection con = dataSource.getConnection();
+        try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(UPDATE_QUERY)) {
 
             ps.setString(1, employee.getName());
@@ -73,7 +86,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     public void deleteById(int id) {
-        try (Connection con = dataSource.getConnection();
+        try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(DELETE_QUERY)) {
 
             ps.setInt(1, id);
@@ -89,7 +102,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public List<Employee> getAll() {
         List<Employee> empList = new ArrayList<>();
 
-        try (Connection con = dataSource.getConnection();
+        try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(SELECT_ALL_QUERY);
              ResultSet rs = ps.executeQuery()) {
 
