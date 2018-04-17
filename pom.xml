@@ -20,6 +20,7 @@
         <module>mvc</module>
         <module>jdbc</module>
         <module>hibernate</module>
+        <module>security</module>
     </modules>
 
     <build>
